@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Ionic Rest Api Example
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-list>
+    <ion-item-sliding *ngFor="let user of users">
+      <ion-item>
+        <ion-avatar item-start>
+          <img src="{{ user.avatar }}">
+        </ion-avatar>
+        <h2>{{ user.first_name }} {{ user.last_name }}</h2>
+        <p>{{user.email}}</p>
+      </ion-item>
+
+      <ion-item-options side="right">
+        <button ion-button color="primary" (click)="openUser(user.id)">
+          <ion-icon name="edit"></ion-icon>
+          Detalhes
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+
+  </ion-list>
+
+  <ion-infinite-scroll (ionInfinite)="getUsers($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Aguarde...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>
